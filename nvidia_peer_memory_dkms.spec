@@ -1,6 +1,6 @@
 Name:		nvidia_peer_memory
 Version:	1.3
-Release:	1%{?dist}
+Release:	1dkms%{?dist}
 Summary:	nvidia_peer_memory
 
 Group:		System Environment/Libraries
