@@ -1,4 +1,16 @@
 #!/bin/bash
+#
+# Bring up/down nv_peer_mem
+#
+# chkconfig: 2345 05 95
+# description: Activates/Deactivates nv_peer_mem module to \
+#              start at boot time.
+#
+### BEGIN INIT INFO
+# Provides:       nv_peer_mem
+# Required-Start: openibd
+# Required-Stop:
+### END INIT INFO
 
 #
 # Copyright (c) 2013 Mellanox Technologies. All rights reserved.
