@@ -56,11 +56,11 @@ try_compile_nvidia_sources()
 	fi
 	/bin/cp -a $nv_sources $tmpdir
 	cd $tmpdir/*
-	make -j8 NV_EXCLUDE_BUILD_MODULES='' KERNEL_UNAME=$KVER clean
+	make -j8 KERNELRELEASE= NV_EXCLUDE_BUILD_MODULES='' KERNEL_UNAME=$KVER clean
 	if [ $? -ne 0 ]; then
 		return
 	fi
-	make -j8 NV_EXCLUDE_BUILD_MODULES='' KERNEL_UNAME=$KVER modules
+	make -j8 KERNELRELEASE= NV_EXCLUDE_BUILD_MODULES='' KERNEL_UNAME=$KVER modules
 	if [ $? -ne 0 ]; then
 		return
 	fi
