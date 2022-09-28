@@ -1,5 +1,5 @@
 Name:		nvidia_peer_memory
-Version:	1.3dkms
+Version:	1.3
 Release:	1%{?dist}
 Summary:	nvidia_peer_memory
 
@@ -23,6 +23,7 @@ mkdir -p %{buildroot}/usr/src/%{name}-%{version}/
 cp -r * %{buildroot}/usr/src/%{name}-%{version}
 mkdir -p %{buildroot}/etc/infiniband
 cp nv_peer_mem.conf %{buildroot}/etc/infiniband/
+mkdir -p %{buildroot}/etc/init.d
 cp nv_peer_mem %{buildroot}/etc/init.d/
 
 %clean
@@ -30,12 +31,11 @@ rm -rf %{buildroot}
 
 %files
 %defattr(0644,root,root)
-%attr(0755,root,root) /usr/src/%{module}-%{version}/
+%attr(0755,root,root) /usr/src/%{name}-%{version}/
 /etc/infiniband/nv_peer_mem.conf
-/etc/init.d/nv_peer_mem
+%attr(0755,root,root) /etc/init.d/nv_peer_mem
 
 %post
-occurrences=/usr/sbin/dkms status | grep "%{module}" | grep "%{version}" | wc -l
 if ! dkms status -m %{name} | egrep %{name}/%{version},; then
    /usr/sbin/dkms add -m %{name} -v %{version}
 fi
@@ -44,5 +44,6 @@ fi
 exit 0
 
 %preun
+/usr/bin/systemctl stop nv_peer_mem
 /usr/sbin/dkms remove -m %{name} -v %{version} --all
 exit 0
