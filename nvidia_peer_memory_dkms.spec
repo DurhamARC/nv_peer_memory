@@ -9,7 +9,7 @@ URL:		http://www.mellanox.com
 Source0:	%{name}-%{version}.tar.gz
 
 BuildRequires:	gcc kernel-headers
-Requires:	dkms gcc bash
+Requires:	dkms gcc bash kmod-nvidia-latest-dkms
 
 %description
 
